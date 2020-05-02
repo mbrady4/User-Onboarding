@@ -23,7 +23,7 @@ const Form = props => {
     const [users, setUsers] = useState([])
 
     const formSchema = yup.object().shape({
-        name: yup.string().required("Name is a required field."),
+        name: yup.string().required("Name is a required field"),
         email: yup.string().email("Must be a valid email address").required(),
         terms: yup.boolean().oneOf([true, "Please agree to the terms"]),
         password: yup.string().min(6, "Must be at least 6 characters")
@@ -83,7 +83,8 @@ const Form = props => {
                 <input type='text' 
                        name='name'
                        value={formValues.name}
-                       onChange={inputChange}/>
+                       onChange={inputChange}
+                       data-cy="name"/>
                 {errors.name.length > 0 ? <p>{errors.name}</p> : null }
             </label>
             <label htmlFor='email'>
@@ -91,16 +92,18 @@ const Form = props => {
                 <input type='email' 
                        name='email'
                        value={formValues.email}
-                       onChange={inputChange}/>
-                {errors.email.length > 0 ? <p>{errors.email}</p> : null }
+                       onChange={inputChange}
+                       data-cy="email"/>
+                {errors.email.length > 0 ? <p data-cy='emerror'>{errors.email}</p> : null }
             </label>
             <label htmlFor='password'>
                 password
                 <input type='password' 
                        name='password'
                        value={formValues.password}
-                       onChange={inputChange}/>
-                {errors.password.length > 0 ? <p>{errors.password}</p> : null}
+                       onChange={inputChange}
+                       data-cy="password"/>
+                {errors.password.length > 0 ? <p data-cy="pwerror">{errors.password}</p> : null}
             </label>
             <label htmlFor='terms'>
                 terms
